@@ -64,19 +64,22 @@ int max(int a, int b)
 	return a > b? a: b;
 }
 
-int height(treeNode *root)
-{
-	if(root == NULL)
-		return 0;
-	int leftSide = height(root->left);
-	printf("Left Side : %d \n", leftSide);
-	int rightSide = height(root->right);
-	printf("Right Side : %d \n", rightSide);
-
-	
-	return 1 + max(leftSide, rightSide);
-	
-}
+int height(treeNode* node)  
+{  
+    if (node == NULL)  
+        return 0;  
+    else
+    {  
+        /* compute the depth of each subtree */
+        int lDepth = height(node->left);  
+        int rDepth = height(node->right);  
+      
+        /* use the larger one */
+        if (lDepth > rDepth)  
+            return(lDepth + 1);  
+        else return(rDepth + 1);  
+    }  
+} 
 
 int main()
 {

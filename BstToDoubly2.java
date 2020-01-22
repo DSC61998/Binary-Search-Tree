@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Stack;
 class DNode
 {
     int data;
@@ -27,7 +28,7 @@ class Node
     }
 }
 
-public class BstToDoubly
+public class BstToDoubly2
 {
     //root node of the tree
     Node root;
@@ -93,28 +94,35 @@ public class BstToDoubly
         }
     }
 
-    //traversing tree in Breadth First Search manner
-    public void traverse(Node temp)
+    //traversing tree in inorder manner 
+    public void traverse(Node t)
     {
-        Queue<Node> queue = new LinkedList<Node>();
-        queue.add(temp);
-        while(!queue.isEmpty())
+        if(t == null)
+        System.out.println("Tree is empty : ");                                 
+
+        else
         {
-            temp = queue.poll();
-            System.out.println(temp.data);
-            createDoubly(temp.data);
-            if(temp.left != null)
-                queue.add(temp.left);
-            if(temp.right != null)
-                queue.add(temp.right);
+            Stack<Node> stack = new Stack<Node>();
+            while(true)
+            {
+                while(t != null)
+                {
+                    stack.push(t);
+                    createDoubly(t.data);
+                    t = t.left;
+                }
+                if(stack.isEmpty())
+                    break;
+                t = stack.pop();
+                //System.out.println(t.data);
+                t = t.right;
+            }
         }
     }
 
-    
-
     public static void main(String[] args)
     {
-        BstToDoubly obj = new BstToDoubly();
+        BstToDoubly2 obj = new BstToDoubly2();
         Scanner scan = new Scanner(System.in);
         int n;
         int num;

@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 
@@ -16,7 +15,7 @@ class Node
     }
 }
 
-public class bstSearch
+public class depthFirstSearch
 {
     //root node of the tree
     Node root;
@@ -53,11 +52,9 @@ public class bstSearch
     //traversing a tree in a pre-order manner
     public void traverse(Node temp)
     {
-        if(temp == null)
-            System.out.println("Tree is empty : ");
-        else
+        if(temp != null)
         {
-            System.out.println(temp.data +  " ");
+            System.out.println(temp.data);
             if(temp.left != null)
                 traverse(temp.left);
             if(temp.right != null)
@@ -65,27 +62,11 @@ public class bstSearch
         }
     }
 
-    static boolean iterativeSearch(Node root, int key) 
-    { 
-        // Traverse untill root reaches to dead end 
-        while (root != null) { 
-            // pass right subtree as new tree 
-            if (key > root.data) 
-                root = root.right; 
-  
-            // pass left subtree as new tree 
-            else if (key < root.data) 
-                root = root.left; 
-            else
-                return true; // if the key is found return 1 
-        } 
-        return false; 
-    } 
- 
+    
 
     public static void main(String[] args)
     {
-        bstSearch obj = new bstSearch();
+        depthFirstSearch obj = new depthFirstSearch();
         Scanner scan = new Scanner(System.in);
         int n;
         int num;
@@ -100,14 +81,6 @@ public class bstSearch
             obj.createNode(num);
         }
         obj.traverse(obj.root);
-
-        System.out.println("Enter a number that u want to search : ");
-        num = scan.nextInt();
-
-        if (iterativeSearch(obj.root, num)) 
-            System.out.println("YES"); 
-        else
-            System.out.println("NO"); 
         scan.close();
     }
 }

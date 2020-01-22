@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 class Node
 {
     int data;
@@ -15,7 +14,7 @@ class Node
     }
 }
 
-public class depthFirstSearch
+public class breadthFirstSearch
 {
     //root node of the tree
     Node root;
@@ -49,16 +48,19 @@ public class depthFirstSearch
         }
     }
 
-    //traversing a tree in Depth First Search manner
+    //traversing tree in Breadth First Search manner
     public void traverse(Node temp)
     {
-        if(temp != null)
+        Queue<Node> queue = new LinkedList<Node>();
+        queue.add(temp);
+        while(!queue.isEmpty())
         {
+            temp = queue.poll();
             System.out.println(temp.data);
             if(temp.left != null)
-                traverse(temp.left);
+                queue.add(temp.left);
             if(temp.right != null)
-                traverse(temp.right);
+                queue.add(temp.right);
         }
     }
 
@@ -66,7 +68,7 @@ public class depthFirstSearch
 
     public static void main(String[] args)
     {
-        depthFirstSearch obj = new depthFirstSearch();
+        breadthFirstSearch obj = new breadthFirstSearch();
         Scanner scan = new Scanner(System.in);
         int n;
         int num;
